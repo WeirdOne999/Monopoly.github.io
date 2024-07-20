@@ -6,6 +6,22 @@ for (let i = 0; i < 4; i++) {
 }
 var allpages = document.querySelectorAll(".page");
 
+var menuBtn = document.querySelector("#menubtn")
+var menuContain = document.querySelector("#navbtncontainer");
+var isMenuOpen = false;
+
+menuBtn.addEventListener("click",function(){
+	if (isMenuOpen){
+		console.log("close menu");
+		isMenuOpen = false;
+		menuContain.style.display = "none";
+	}else{
+		console.log("open menu");
+		isMenuOpen = true;
+		menuContain.style.display = "block";
+	}
+})
+
 //select all subtopic pages
 //console.log(allpages);
 hideallPages();
@@ -130,6 +146,30 @@ function showStrategy(pgno) { //function to show selected page no
 		onepage.classList.add("support-slidescreen");
 	}
 
+	switch(pgno){
+		case 1:
+			twopage.src = "images/propertystrategy.png"
+			break;
+		case 2:
+			twopage.src = "images/buildingstrategy.jpg"
+			break;
+		case 3:
+			twopage.src = "images/tradestrategy.jpg"
+			break;
+		case 4:
+			twopage.src = "images/moneystrategy.jpg"
+			break;
+		case 5:
+			twopage.src = "images/jailstrategy.jpg"
+			break;
+		case 6:
+			twopage.src = "images/defensestrategy.jpg"
+			break;
+		case 7:
+			twopage.src = "images/mindstrategy.jpg"
+			break;
+	}
+
 	/*animation play*/
 	if (!twopage.classList.contains("support-slidescreen")) {
 		//console.log("false");
@@ -162,6 +202,7 @@ class playerObject {
 		this.hasMoved = false;
 		this.inJail = false;
 		this.jailTurnLeft = 3;
+		this.icon = 0;
 	}
 
 	roll() {
@@ -462,11 +503,44 @@ var player2icon = document.querySelector("#player2icon");
 var startcash = document.querySelector("#startcash");
 var play = document.querySelector("#play");
 
+var player1img = document.querySelector("#player1");
+var player2img = document.querySelector("#player2");
+
 play.addEventListener("click", function() {
 	playersInGame[0].name = player1name.value;
 	playersInGame[1].name = player2name.value;
 	playersInGame[0].cash = parseInt(startcash.value);
 	playersInGame[1].cash = parseInt(startcash.value);
+
+	playersInGame[0].icon = player1icon.value;
+	playersInGame[1].icon = player2icon.value;
+
+	if (player1icon.value == "Dog"){
+		player1img.src = "images/dog.png";
+	}
+	else if (player1icon.value == "Shoe"){
+		player1img.src = "images/shoe.png";
+	}
+	else if (player1icon.value == "Boat"){
+		player1img.src = "images/boat.png";
+	}
+	else if (player1icon.value == "Iron"){
+		player1img.src = "images/iron.png";
+	}
+
+	if (player2icon.value == "Dog"){
+		player2img.src = "images/dog.png";
+	}
+	else if (player2icon.value == "Shoe"){
+		player2img.src = "images/shoe.png";
+	}
+	else if (player2icon.value == "Boat"){
+		player2img.src = "images/boat.png";
+	}
+	else if (player2icon.value == "Iron"){
+		player2img.src = "images/iron.png";
+	}
+
 	showControls(1);
 	update();
 });
@@ -502,7 +576,7 @@ function Sell(num) {
 		chatLogs.push(playersInGame[turn].name + " sold " + propertySelect.name + " for $" + tempCash + "<br>");
 		updateBuildingProperties(propertiesIndex[num]);
 		console.log(num + test);
-		document.querySelector("#tile" + (num + test + 1).toString()).querySelector(".bordertile").src = "";
+		document.querySelector("#tile" + (num + test + 1).toString()).querySelector(".bordertile").src = "images/transparent.png";
 	} else {
 		//not owned by you
 		chatLogs.push(propertySelect.name + " is not owned by " + playersInGame[turn].name + "<br>");
@@ -547,8 +621,8 @@ function update() {
 
 		document.getElementById("tile" + (playersInGame[i].pos + 1).toString()).appendChild(playerimages[i]);
 	}
-	player1info.innerHTML = playersInGame[0].name + "<br> Cash: " + playersInGame[0].cash.toString();
-	player2info.innerHTML = playersInGame[1].name + " <br> Cash: " + playersInGame[1].cash.toString();
+	player1info.innerHTML = playersInGame[0].name + "<br>Icon:  " + playersInGame[0].icon + "<br> Cash: " + playersInGame[0].cash.toString();
+	player2info.innerHTML = playersInGame[1].name + "<br>Icon:  " + playersInGame[1].icon +" <br> Cash: " + playersInGame[1].cash.toString();
 
 	let tempChat = [];
 	if (chatLogs.length > 10) {

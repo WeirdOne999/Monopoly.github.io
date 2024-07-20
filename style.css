@@ -22,14 +22,31 @@ html{
 }
 
 .navbtn {
+	padding:1vh 1vw;
+	background-color: coral;
 	float:right;
-	margin:1em;
+	margin:1vh 1vw;
+	font-size: 250%;
+}
+
+#menubtn{
+	display: none;
+}
+
+#menuhide{
+	clear:none;
+	float:none;
 }
 
 #pagecontainer{
 	clear:both;
 	height: 10vh;
 }
+
+#navbtncontainer{
+	display: block;
+}
+
 /*Body*/
 body{
 	background-color:bisque;
@@ -138,7 +155,7 @@ section{
 
 .strategybtn{
 	float:left;
-	margin:0 1vw;
+	margin:1vh 1vw;
 	padding: 0.1vh 0.1vw;
 	width:12%;
 	align-items: center;
@@ -169,6 +186,7 @@ section{
 #strategypicture{
 	width: 40%;
 	float: right;
+	margin:1vh 1vw;
 }
 
 .support-slidescreen{
@@ -597,7 +615,6 @@ h2{
 
 	.strategybtn{
 		float:left;
-		margin:0 1vw;
 		padding: 0.1vh 0.1vw;
 		width:45%;
 		align-items: center;
@@ -621,5 +638,18 @@ h2{
 
 	.strategydesc{
 		width: 100%;
+	}
+
+	#menubtn{
+		display: block;
+	}
+
+	#menuhide{
+		clear:both;
+		float:right;
+	}
+
+	#navbtncontainer{
+		display: none;
 	}
 }
